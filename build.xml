@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="shift" default="jar" basedir=".">
+	
+	<target name="init">
+		<delete dir="build" />
+		<mkdir dir="build" />
+		<delete file="util.jar" />
+	</target>
+	
+	<target name="compile" depends="init">
+		<javac destdir="build" optimize="on" debug="on" source="1.8" target="1.8" encoding="UTF-8" includeantruntime="false" nowarn="on">
+			<compilerarg value="-Xlint:all" />
+			<src path="src/main/java" />
+		</javac>
+	</target>
+	
+	<target name="jar" depends="compile">
+		<jar destfile="util.jar" level="9">
+			<fileset dir="build" />
+			<manifest>
+				<attribute name="Main-Class" value="shift.Main" />
+			</manifest>
+		</jar>
+		<delete dir="build" />
+	</target>
+	
+</project>
